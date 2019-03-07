@@ -1,6 +1,6 @@
 {
   "name": "dnsimple-dyndns",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple Node JS application to update a DNSimple DNS record of your choosing with your current IP.",
   "main": "dnsimple-dyndns",
   "bin": "dnsimple-dyndns",
