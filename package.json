@@ -1,0 +1,21 @@
+{
+  "name": "dnsimple-dyndns",
+  "version": "1.0.0",
+  "description": "A simple Node JS application to update a DNSimple DNS record of your choosing with your current IP.",
+  "main": "dnsimple-dyndns",
+  "bin": "dnsimple-dyndns",
+  "keywords": [
+    "DNSimple",
+    "DynDNS",
+    "dynamic",
+    "DNS"
+  ],
+  "author": "Matt Booth",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "commander": "^2.19.0",
+    "dnsimple": "^2.9.0",
+    "dotenv": "^6.2.0"
+  }
+}
