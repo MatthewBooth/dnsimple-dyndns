@@ -1,21 +1,61 @@
 {
   "name": "dnsimple-dyndns",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A simple Node JS application to update a DNSimple DNS record of your choosing with your current IP.",
-  "main": "dnsimple-dyndns",
-  "bin": "dnsimple-dyndns",
+  "homepage": "https://github.com/MatthewBooth/dnsimple-dyndns/blob/master/README.md#dnsimple---dynamic-dns",
+  "author": "Matt Booth <kryten2k35@gmail.com> (https://mattbooth.dev)",
+  "license": "CC-BY-NC-SA-4.0",
+  "repository": "github:MatthewBooth/dnsimple-dyndns",
+  "bin": {
+    "dnsimple-dyndns": "./bin/run"
+  },
+  "main": "src/index.js",
   "keywords": [
     "DNSimple",
     "DynDNS",
-    "dynamic",
+    "Dynamic",
     "DNS"
   ],
-  "author": "Matt Booth",
-  "license": "MIT",
   "dependencies": {
+    "@oclif/command": "^1.5.11",
+    "@oclif/config": "^1.12.9",
+    "@oclif/errors": "latest",
+    "@oclif/plugin-help": "^2.1.6",
     "axios": "^0.18.0",
-    "commander": "^2.19.0",
+    "cli-ux": "^5.2.0",
+    "config": "^3.0.1",
     "dnsimple": "^2.9.0",
-    "dotenv": "^6.2.0"
+    "makensis": "^0.17.0",
+    "moment": "^2.24.0",
+    "write-json-file": "^3.1.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.21.2",
+    "eslint": "^5.15.1",
+    "eslint-config-oclif": "^3.1.0",
+    "globby": "^8.0.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "dnsimple-dyndns",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json && rm -rf tmp/",
+    "pack": "npm run prepack && oclif-dev pack && npm run postpack",
+    "pack-all": "npm run prepack && oclif-dev pack && oclif-dev pack:win && npm run postpack",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "readme": "oclif-dev readme"
   }
 }

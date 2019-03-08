@@ -1,93 +1,120 @@
-# DNSimple - Dynamic DNS
+DNSimple Dynamic DNS
+===============
 
-This package is a simple tool to dynamically update a DNS record with the IP address of your current machine.
+A simple Node JS application to sync a DNSimple DNS record of your choosing with your dynamic IP.
 
-This is especially useful running on a server or computer that is behind a dynamic public IP address.
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![Version](https://img.shields.io/npm/v/dnsimple-dyndns.svg)](https://npmjs.org/package/dnsimple-dyndns)
+[![Downloads/week](https://img.shields.io/npm/dw/dnsimple-dyndns.svg)](https://npmjs.org/package/dnsimple-dyndns)
+[![License](https://img.shields.io/npm/l/dnsimple-dyndns.svg)](https://github.com/MatthewBooth/dnsimple-dyndns/blob/master/package.json)
 
-## Installation
+<!-- toc -->
+* [Usage](#usage)
+* [Commands](#commands)
+* [Cron job](#cron-job)
+<!-- tocstop -->
+# Usage
+<!-- usage -->
+```sh-session
+$ npm install -g dnsimple-dyndns
+$ dnsimple-dyndns COMMAND
+running command...
+$ dnsimple-dyndns (-v|--version|version)
+dnsimple-dyndns/2.0.0 linux-x64 node-v10.15.2
+$ dnsimple-dyndns --help [COMMAND]
+USAGE
+  $ dnsimple-dyndns COMMAND
+...
+```
+<!-- usagestop -->
+# Commands
+<!-- commands -->
+* [`dnsimple-dyndns config`](#dnsimple-dyndns-config)
+* [`dnsimple-dyndns help [COMMAND]`](#dnsimple-dyndns-help-command)
+* [`dnsimple-dyndns show`](#dnsimple-dyndns-show)
+* [`dnsimple-dyndns sync`](#dnsimple-dyndns-sync)
 
-```bash
-npm install --global dnsimple-dyndns
+## `dnsimple-dyndns config`
 
-OR
+Run through the setup Wizard and create a configuration file
 
-npm i -g dnsimple-dyndns
+```
+USAGE
+  $ dnsimple-dyndns config
+
+OPTIONS
+  -d, --domain=domain        The Domain Name you wish to use
+  -q, --quiet                Do not display any output
+  -s, --subDomain=subDomain  The Sub-Domain Name you wish to use
+  -t, --token=token          DNSimple API Token belonging to an account
 ```
 
-## Usage
-Basic usage of the package can be found below. 
+_See code: [src/commands/config.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.0/src/commands/config.js)_
 
-You must set some environment variables, or pass them along with the command.
+## `dnsimple-dyndns help [COMMAND]`
 
-### CLI
-For example, you could use run:
+display help for dnsimple-dyndns
 
-```bash
-DOMAIN=example.com RECORD_ID=1234567 ACCOUNT_ID=9876543 TOKEN=ToKeNToKeNToKeN dnsimple-dyndns show
 ```
-### Environment
-Add the following to your global environment (E.G. `.bashrc`, `.zshrc`, `/etc/environment`):
+USAGE
+  $ dnsimple-dyndns help [COMMAND]
 
-```bash
-DOMAIN=example.com
-RECORD_ID=1234567
-ACCOUNT_ID=9876543
-TOKEN=ToKeNToKeNToKeN
+ARGUMENTS
+  COMMAND  command to show help for
+
+OPTIONS
+  --all  see all commands in CLI
 ```
 
-Then, you can simply run `dnsimple-dyndns show` from your commandline
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
 
-### Script
+## `dnsimple-dyndns show`
 
-You can also wrap them in a BASH script:
+Show the current configuration
 
-```bash
-#!/usr/bin/env bash
-export DOMAIN=example.com
-export RECORD_ID=1234567
-export ACCOUNT_ID=9876543
-export TOKEN=ToKeNToKeNToKeN
-
-dnsimple-dyndns $*
+```
+USAGE
+  $ dnsimple-dyndns show
 ```
 
-and execute like `./dns.sh update`
+_See code: [src/commands/show.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.0/src/commands/show.js)_
 
-## Help
-```bash
-Usage: dnsimple-dyndns [options] [command]
+## `dnsimple-dyndns sync`
 
-Options:
-  -V, --version     output the version number
-  -h, --help        output usage information
+Sync the configured record with your current IP
 
-Commands:
-  show              Show current configuration
-  new [subdomain]   Create a new subdomain and record with your current IP
-  update [options]  Update the configured record with your current IP
+```
+USAGE
+  $ dnsimple-dyndns sync
+
+OPTIONS
+  -f, --force  Force the sync to happen, even if your IP hasn't changed
+  -q, --quiet  Do not display any output
 ```
 
-## Suggested use
-A good use of this package would be in conjunction with a crontask that executes on a server or computer at your home.
+_See code: [src/commands/sync.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.0/src/commands/sync.js)_
+<!-- commandsstop -->
 
-### Cron task
-1. Find out where the package was installed:
+# Cron job
+1. Configure your record by running:
+        
+2. Find out where the package was installed:
 
-    ```bash
-    npm root -g dnsimple-dyndns
+    ```sh-session
+    $ npm root -g dnsimple-dyndns
     ```
     
     You should get a response, such as `/usr/local/lib/node_modules/bin/dnsimple-dyndns`.
 
-2. Create a crontab entry by typing the following command
-    ```bash
-    crontab -e
+3. Create a crontab entry by typing the following command
+    ```sh-session
+    $ crontab -e
     ```
     
     and then add the following line
 
     ```bash
-    */5 * * * * DOMAIN=example.com RECORD_ID=1234567 ACCOUNT_ID=9876543 TOKEN=ToKeNToKeNToKeN /usr/local/lib/node_modules/bin/dnsimple-dyndns update
+    */5 * * * * /usr/local/lib/node_modules/bin/dnsimple-dyndns sync
     ```
     
     This will create a crontask that run every 5 minutes. 
