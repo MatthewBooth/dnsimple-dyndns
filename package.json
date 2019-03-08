@@ -1,8 +1,8 @@
 {
   "name": "dnsimple-dyndns",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple Node JS application to update a DNSimple DNS record of your choosing with your current IP.",
-  "homepage": "https://github.com/MatthewBooth/dnsimple-dyndns/blob/master/README.md#dnsimple---dynamic-dns",
+  "homepage": "https://github.com/MatthewBooth/dnsimple-dyndns/blob/master/README.md#dnsimple-dynamic-dns",
   "author": "Matt Booth <kryten2k35@gmail.com> (https://mattbooth.dev)",
   "license": "CC-BY-NC-SA-4.0",
   "repository": "github:MatthewBooth/dnsimple-dyndns",
