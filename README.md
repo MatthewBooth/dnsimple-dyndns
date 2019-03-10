@@ -7,6 +7,7 @@ A simple Node JS application to sync a DNSimple DNS record of your choosing with
 [![Version](https://img.shields.io/npm/v/dnsimple-dyndns.svg)](https://npmjs.org/package/dnsimple-dyndns)
 [![Downloads/week](https://img.shields.io/npm/dw/dnsimple-dyndns.svg)](https://npmjs.org/package/dnsimple-dyndns)
 [![License](https://img.shields.io/npm/l/dnsimple-dyndns.svg)](https://github.com/MatthewBooth/dnsimple-dyndns/blob/master/package.json)
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/MatthewBooth/dnsimple-dyndns.svg?columns=all)](https://waffle.io/MatthewBooth/dnsimple-dyndns)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -20,7 +21,7 @@ $ npm install -g dnsimple-dyndns
 $ dnsimple-dyndns COMMAND
 running command...
 $ dnsimple-dyndns (-v|--version|version)
-dnsimple-dyndns/2.0.0 linux-x64 node-v10.15.2
+dnsimple-dyndns/2.0.1 linux-x64 node-v10.15.3
 $ dnsimple-dyndns --help [COMMAND]
 USAGE
   $ dnsimple-dyndns COMMAND
@@ -36,7 +37,7 @@ USAGE
 
 ## `dnsimple-dyndns config`
 
-Run through the setup Wizard and create a configuration file
+Run through the setup wizard and create a configuration file.
 
 ```
 USAGE
@@ -46,10 +47,22 @@ OPTIONS
   -d, --domain=domain        The Domain Name you wish to use
   -q, --quiet                Do not display any output
   -s, --subDomain=subDomain  The Sub-Domain Name you wish to use
-  -t, --token=token          DNSimple API Token belonging to an account
+  -t, --token=token          DNSimple API Token
+
+DESCRIPTION
+  Run through a series of prompts to configure your record, or pass along the appropriate options.
+
+  You can pass partial options and answer the remaining mandatory config settings as prompts.
+
+  Wizard:   'dnsimple-dyndns config'
+
+  Automate: 'dnsimple-dyndns config --token=[DNSIMPLE TOKEN] --domain=example.com --subdomain=local --quiet'
+            'dnsimple-dyndns config -t [DNSIMPLE TOKEN] -d example.com -s local -q'
+         
+  Partial:  'dnsimple-dyndns config --token=[DNSIMPLE TOKEN]'
 ```
 
-_See code: [src/commands/config.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.0/src/commands/config.js)_
+_See code: [src/commands/config.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.1/src/commands/config.js)_
 
 ## `dnsimple-dyndns help [COMMAND]`
 
@@ -70,18 +83,23 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6
 
 ## `dnsimple-dyndns show`
 
-Show the current configuration
+Show the current configuration.
 
 ```
 USAGE
   $ dnsimple-dyndns show
+
+DESCRIPTION
+  Ensure you have run 'dnsimple-dyndns config' first. 
+
+  This will print the JSON output for your current configuration.
 ```
 
-_See code: [src/commands/show.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.0/src/commands/show.js)_
+_See code: [src/commands/show.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.1/src/commands/show.js)_
 
 ## `dnsimple-dyndns sync`
 
-Sync the configured record with your current IP
+Sync the configured record with your current IP.
 
 ```
 USAGE
@@ -90,9 +108,18 @@ USAGE
 OPTIONS
   -f, --force  Force the sync to happen, even if your IP hasn't changed
   -q, --quiet  Do not display any output
+
+DESCRIPTION
+  Will check if your IP has changed since the last update and sync as appropriate.
+
+  Forced update:  'dnsimple-dyndns sync --force'
+                  'dnsimple-dyndns -f'
+
+  Silent update:  'dnsimple-dyndns sync --quiet'
+                  'dnsimple-dyndns -q'
 ```
 
-_See code: [src/commands/sync.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.0/src/commands/sync.js)_
+_See code: [src/commands/sync.js](https://github.com/MatthewBooth/dnsimple-dyndns/blob/v2.0.1/src/commands/sync.js)_
 <!-- commandsstop -->
 
 # Cron job

@@ -47,7 +47,16 @@ class SyncCommand extends Command {
   }
 }
 
-SyncCommand.description = 'Sync the configured record with your current IP'
+SyncCommand.description = `Sync the configured record with your current IP.
+
+Will check if your IP has changed since the last update and sync as appropriate.
+
+Forced update:  'dnsimple-dyndns sync --force'
+               'dnsimple-dyndns -f'
+
+Silent update:  'dnsimple-dyndns sync --quiet'
+               'dnsimple-dyndns -q' 
+`
 
 SyncCommand.flags = {
   quiet: flags.boolean({
