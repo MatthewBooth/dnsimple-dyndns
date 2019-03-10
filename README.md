@@ -7,6 +7,7 @@ A simple Node JS application to sync a DNSimple DNS record of your choosing with
 [![Version](https://img.shields.io/npm/v/dnsimple-dyndns.svg)](https://npmjs.org/package/dnsimple-dyndns)
 [![Downloads/week](https://img.shields.io/npm/dw/dnsimple-dyndns.svg)](https://npmjs.org/package/dnsimple-dyndns)
 [![License](https://img.shields.io/npm/l/dnsimple-dyndns.svg)](https://github.com/MatthewBooth/dnsimple-dyndns/blob/master/package.json)
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/MatthewBooth/dnsimple-dyndns.svg?columns=all)](https://waffle.io/MatthewBooth/dnsimple-dyndns)
 
 <!-- toc -->
 * [Usage](#usage)
