@@ -16,6 +16,10 @@ class ShowCommand extends Command {
   }
 }
 
-ShowCommand.description = 'Show the current configuration'
+ShowCommand.description = `Show the current configuration.
+Ensure you have run 'dnsimple-dyndns config' first. 
+
+This will print the JSON output for your current configuration.
+`
 
 module.exports = ShowCommand

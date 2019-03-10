@@ -72,7 +72,18 @@ class ConfigCommand extends Command {
   }
 }
 
-ConfigCommand.description = 'Run through the setup Wizard and create a configuration file'
+ConfigCommand.description = `Run through the setup wizard and create a configuration file.
+Run through a series of prompts to configure your record, or pass along the appropriate options.
+
+You can pass partial options and answer the remaining mandatory config settings as prompts.
+
+Wizard:   'dnsimple-dyndns config'
+
+Automate: 'dnsimple-dyndns config --token=[DNSIMPLE TOKEN] --domain=example.com --subdomain=local --quiet'
+         'dnsimple-dyndns config -t [DNSIMPLE TOKEN] -d example.com -s local -q'
+         
+Partial:  'dnsimple-dyndns config --token=[DNSIMPLE TOKEN]'
+`
 
 ConfigCommand.flags = {
   quiet: flags.boolean({
@@ -83,7 +94,7 @@ ConfigCommand.flags = {
   }),
   token: flags.string({
     char: 't',
-    description: 'DNSimple API Token belonging to an account',
+    description: 'DNSimple API Token',
     required: false,
     default: null
   }),
