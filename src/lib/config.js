@@ -1,7 +1,7 @@
 const writeJsonFile = require('write-json-file')
-const moment = require('moment')
 const path = require('path')
 const fs = require('fs')
+const formatISO = require('date-fns/formatISO')
 
 class Config {
   constructor (configDir) {
@@ -88,8 +88,8 @@ class Config {
     this.recordId = ''
     this.recordName = ''
     this.ipAddress = ''
-    this.createdAt = moment().toJSON()
-    this.updatedAt = moment().toJSON()
+    this.createdAt = this.getISODateString()
+    this.updatedAt = this.getISODateString()
     this.writeConfig()
   }
 
@@ -119,12 +119,16 @@ class Config {
     this.updatedAt = json.updatedAt
   }
 
+  getISODateString () {
+    return formatISO(new Date())
+  }
+
   writeConfig () {
     return writeJsonFile.sync(this._configFile, this.toJson())
   }
 
   updateConfig () {
-    this.updatedAt = moment().toJSON()
+    this.updatedAt = this.getISODateString()
     return writeJsonFile.sync(this._configFile, this.toJson())
   }
 

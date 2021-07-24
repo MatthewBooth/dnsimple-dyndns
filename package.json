@@ -24,9 +24,9 @@
     "axios": "0.21.1",
     "cli-ux": "^5.2.0",
     "config": "^3.0.1",
+    "date-fns": "^2.23.0",
     "dnsimple": "^2.9.0",
     "makensis": "^0.17.0",
-    "moment": "^2.24.0",
     "write-json-file": "^3.1.0"
   },
   "devDependencies": {
