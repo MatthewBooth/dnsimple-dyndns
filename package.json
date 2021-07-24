@@ -21,7 +21,7 @@
     "@oclif/config": "^1.12.9",
     "@oclif/errors": "latest",
     "@oclif/plugin-help": "^2.1.6",
-    "axios": "^0.18.0",
+    "axios": "0.21.1",
     "cli-ux": "^5.2.0",
     "config": "^3.0.1",
     "dnsimple": "^2.9.0",
